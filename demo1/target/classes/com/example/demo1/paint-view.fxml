@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.paintCon">
+   <top>
+      <Pane prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+             <MenuBar prefHeight="55.0" prefWidth="600.0">
+                 <menus>
+                     <Menu mnemonicParsing="false" text="File">
+                         <items>
+                             <MenuItem fx:id="newCan" mnemonicParsing="false" onAction="#newTab" text="New">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-new-file-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                             <MenuItem mnemonicParsing="false" onAction="#closeP" text="Close">
+                                 <accelerator>
+                                     <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-close-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                             </MenuItem>
+                             <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open">
+                                 <accelerator>
+                                     <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-opened-folder-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                             </MenuItem>
+                             <MenuItem mnemonicParsing="false" onAction="#clearCan" text="Clear">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-trash-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                             <MenuItem mnemonicParsing="false" onAction="#save" text="Save">
+                                 <accelerator>
+                                     <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-save-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                             </MenuItem>
+                             <MenuItem mnemonicParsing="false" onAction="#saveAs" text="Save As">
+                                 <accelerator>
+                                     <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                                 </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-save-as-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                             </MenuItem>
+                         </items>
+                     </Menu>
+                     <Menu mnemonicParsing="false" text="Edit">
+                         <items>
+                             <RadioMenuItem fx:id="copy" mnemonicParsing="false" text="Select/Copy">
+                                 <toggleGroup>
+                                     <ToggleGroup fx:id="tools" />
+                                 </toggleGroup>
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-copy-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                             </RadioMenuItem>
+                             <RadioMenuItem fx:id="paste" mnemonicParsing="false" text="Paste" toggleGroup="$tools">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-paste-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="copyCut" mnemonicParsing="false" text="Cut" toggleGroup="$tools">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-cut-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#roCan" text="Rotate Canvas">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-rotate-right-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#flipCanY" text="Vert Flip">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-flip-horizontal-to-vertical-in-right-orientation-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#flipCanX" text="Horiz Flip">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-flip-vertical-to-horizontal-in-right-orientation-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                         </items>
+                     </Menu>
+                     <Menu mnemonicParsing="false" text="Tools">
+                         <items>
+                             <RadioMenuItem fx:id="pointerTool" mnemonicParsing="false" text="Pointer" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-pointer-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="eraserTool" mnemonicParsing="false" text="Eraser" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-eraser-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="brushTool" mnemonicParsing="false" text="Brush" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-paint-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="lineTool" mnemonicParsing="false" text="Line" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-line-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="dlineTool" mnemonicParsing="false" text="Dashed Line" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-dashed-line-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="circleTool" mnemonicParsing="false" text="Circle" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-circle-50.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="rectTool" mnemonicParsing="false" text="Rectangle" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-rectangle-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="roundRectTool" mnemonicParsing="false" text="Round Rect" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-rounded-rectangle-stroked-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="elpsTool" mnemonicParsing="false" text="Ellipse" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-ellipse-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                             <RadioMenuItem fx:id="poliTool" mnemonicParsing="false" text="poiganmy" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icons8-polygon-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></RadioMenuItem>
+                         </items>
+                     </Menu>
+                     <Menu mnemonicParsing="false" text="Help">
+                         <items>
+                             <MenuItem mnemonicParsing="false" onAction="#helpFile" text="About" />
+                         </items>
+                     </Menu>
+                 </menus>
+             </MenuBar>
+            <Button fx:id="undo" layoutX="168.0" layoutY="1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="49.0" text="undo">
+               <tooltip>
+                  <Tooltip text="Undo" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons8-undo-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="redo" layoutX="219.0" layoutY="1.0" mnemonicParsing="false" prefHeight="7.0" prefWidth="47.0" text="redo">
+               <tooltip>
+                  <Tooltip text="Redo" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons8-redo-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <ColorPicker fx:id="colorPicker" layoutX="508.0" prefHeight="25.0" prefWidth="92.0">
+               <tooltip>
+                  <Tooltip text="ColorPicker" />
+               </tooltip></ColorPicker>
+            <TextField fx:id="fontSize" layoutX="445.0" layoutY="7.0" prefHeight="23.0" prefWidth="58.0">
+               <tooltip>
+                  <Tooltip text="Font Size" />
+               </tooltip></TextField>
+            <RadioButton fx:id="eyeDropper" layoutX="509.0" layoutY="26.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="91.0" text="Eye Dropper" toggleGroup="$tools">
+               <tooltip>
+                  <Tooltip text="Eye Dropper" />
+               </tooltip></RadioButton>
+            <CheckBox fx:id="auto" layoutX="286.0" layoutY="12.0" mnemonicParsing="false" onAction="#autoSave" prefHeight="27.0" prefWidth="196.0" text="Auto Save">
+               <tooltip>
+                  <Tooltip text="Auto Save" />
+               </tooltip></CheckBox>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <TabPane fx:id="tabP" prefHeight="349.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+               <content>
+                  <ScrollPane fx:id="scrolls" prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <StackPane fx:id="stacks" prefHeight="315.0" prefWidth="604.0">
+                           <children>
+                              <Pane fx:id="canPane" prefHeight="315.0" prefWidth="591.0">
+                                 <children>
+                                    <ImageView fx:id="imgDr" fitHeight="321.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Canvas fx:id="canvas" height="313.0" width="600.0" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </StackPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
